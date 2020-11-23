@@ -5,8 +5,8 @@ variable "region" {
 variable "az" {
   type = map(string)
   default = {
-    "AvailabilityZone1" = "ap-southeast-1a",
-    "AvailabilityZone2" = "ap-southeast-1b"
+    "az_1" = "ap-southeast-1a",
+    "az_2" = "ap-southeast-1b"
   }
 }
 
@@ -17,50 +17,54 @@ variable "vpc_name" {
 variable "vpc_cidr_map" {
   type = map(string)
   default = {
-    "VPC"      = "10.50.0.0/16",
-    "Public1"  = "10.50.0.0/24",
-    "Public2"  = "10.50.1.0/24",
-    "Private1" = "10.50.64.0/19",
-    "Private2" = "10.50.96.0/19"
+    "vpc"              = "10.50.0.0/16",
+    "public_subnet_1"  = "10.50.0.0/24",
+    "public_subnet_2"  = "10.50.1.0/24",
+    "private_subnet_1" = "10.50.64.0/19",
+    "private_subnet_2" = "10.50.96.0/19"
   }
 }
 
-output "VPC_Id" {
+output "vpc_id" {
   value = aws_vpc.main.id
 }
 
-output "VPC_CIDR" {
+output "vpc_cidr" {
   value = aws_vpc.main.cidr_block
 }
 
-output "PublicSubnet1_Id" {
-  value = aws_subnet.public1.id
+output "public_subnet_1_id" {
+  value = aws_subnet.public_subnet_1.id
 }
 
-output "PublicSubnet1_CIDR" {
-  value = aws_subnet.public1.cidr_block
+output "public_subnet_1_cidr" {
+  value = aws_subnet.public_subnet_1.cidr_block
 }
 
-output "PublicSubnet2_Id" {
-  value = aws_subnet.public2.id
+output "public_subnet_2_id" {
+  value = aws_subnet.public_subnet_2.id
 }
 
-output "PublicSubnet2_CIDR" {
-  value = aws_subnet.public2.cidr_block
+output "public_subnet_2_cidr" {
+  value = aws_subnet.public_subnet_2.cidr_block
 }
 
-output "PrivateSubnet1_Id" {
-  value = aws_subnet.private1.id
+output "private_subnet_1_id" {
+  value = aws_subnet.private_subnet_1.id
 }
 
-output "PrivateSubnet1_CIDR" {
-  value = aws_subnet.private1.cidr_block
+output "private_subnet_1_cidr" {
+  value = aws_subnet.private_subnet_1.cidr_block
 }
 
-output "PrivateSubnet2_Id" {
-  value = aws_subnet.private2.id
+output "private_subnet_2_id" {
+  value = aws_subnet.private_subnet_2.id
 }
 
-output "PrivateSubnet2_CIDR" {
-  value = aws_subnet.private2.cidr_block
+output "private_subnet_2_cidr" {
+  value = aws_subnet.private_subnet_2.cidr_block
+}
+
+output "internet_gateway_id" {
+  value = aws_internet_gateway.igw.id
 }
