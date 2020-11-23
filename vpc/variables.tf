@@ -5,8 +5,8 @@ variable "region" {
 variable "az" {
   type = map(string)
   default = {
-    "Public1" = "ap-southeast-1a",
-    "Public2" = "ap-southeast-1b"
+    "AvailabilityZone1" = "ap-southeast-1a",
+    "AvailabilityZone2" = "ap-southeast-1b"
   }
 }
 
@@ -47,4 +47,20 @@ output "PublicSubnet2_Id" {
 
 output "PublicSubnet2_CIDR" {
   value = aws_subnet.public2.cidr_block
+}
+
+output "PrivateSubnet1_Id" {
+  value = aws_subnet.private1.id
+}
+
+output "PrivateSubnet1_CIDR" {
+  value = aws_subnet.private1.cidr_block
+}
+
+output "PrivateSubnet2_Id" {
+  value = aws_subnet.private2.id
+}
+
+output "PrivateSubnet2_CIDR" {
+  value = aws_subnet.private2.cidr_block
 }
