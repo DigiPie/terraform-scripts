@@ -1,5 +1,9 @@
 # terraform-scripts
 
+This repository contains sample Terraform scripts written for AWS. Right now, it only contains the `getting-started` scripts I wrote following the [Hashicorp's 'Get Started - AWS' guide](https://learn.hashicorp.com/collections/terraform/aws-get-started), and the `vpc` scripts I wrote to launch a network setup identical to the one created by the AWS CloudFormation script: [Digipie/nodejs-mysql-cloudformation/vpc.cfn.yml](https://github.com/DigiPie/nodejs-mysql-cloudformation/blob/main/vpc.cfn.yml).
+
+I will update it to include more Terraform scripts for AWS and also GCP in future.
+
 ## Design decisions
 
 ### Why not inline security group rule
