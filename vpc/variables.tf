@@ -1,3 +1,4 @@
+### variables
 variable "region" {
   default = "ap-southeast-1"
 }
@@ -26,13 +27,15 @@ variable "vpc_cidr_map" {
 }
 
 variable "bastion_ssh_cidr" {
-  type    = list(string)
-  default = ["0.0.0.0/0"]
+  type        = list(string)
+  default     = ["0.0.0.0/0"]
+  description = "The CIDR block to allow SSH ingress for Bastion"
 }
 
 variable "db_port" {
-  type    = number
-  default = 3306 # MySQL port: 3306, PSQL port: 5432
+  type        = number
+  default     = 3306 # MySQL port: 3306, PSQL port: 5432
+  description = "The database port to allow ingress for App and Bastion"
 }
 
 variable "elb_ingress_port" {
@@ -45,6 +48,16 @@ variable "app_ingress_port" {
   default = 80
 }
 
+variable "is_production" {
+  type        = bool
+  default     = false
+  description = "If production, create 2 NAT gateways, one in each public subnet, used by each corresponding private subnet; else if not, create 1 NAT gateway only, in the first public subnet, used by both private subnets"
+}
+
+### outputs
+output "vpc_name" {
+  value = var.vpc_name
+}
 
 output "vpc_id" {
   value = aws_vpc.main.id
@@ -87,7 +100,7 @@ output "private_subnet_2_cidr" {
 }
 
 output "internet_gateway_id" {
-  value = aws_internet_gateway.igw.id
+  value = aws_internet_gateway.internet_gateway.id
 }
 
 output "elb_security_group_id" {
@@ -112,4 +125,8 @@ output "elb_ingress_port" {
 
 output "app_ingress_port" {
   value = var.app_ingress_port
+}
+
+output "is_production" {
+  value = var.is_production
 }
