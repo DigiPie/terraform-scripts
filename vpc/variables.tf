@@ -25,6 +25,27 @@ variable "vpc_cidr_map" {
   }
 }
 
+variable "bastion_ssh_cidr" {
+  type    = list(string)
+  default = ["0.0.0.0/0"]
+}
+
+variable "db_port" {
+  type    = number
+  default = 3306 # MySQL port: 3306, PSQL port: 5432
+}
+
+variable "elb_ingress_port" {
+  type    = number
+  default = 80
+}
+
+variable "app_ingress_port" {
+  type    = number
+  default = 80
+}
+
+
 output "vpc_id" {
   value = aws_vpc.main.id
 }
@@ -67,4 +88,28 @@ output "private_subnet_2_cidr" {
 
 output "internet_gateway_id" {
   value = aws_internet_gateway.igw.id
+}
+
+output "elb_security_group_id" {
+  value = aws_security_group.elb_security_group.id
+}
+
+output "app_security_group_id" {
+  value = aws_security_group.app_security_group.id
+}
+
+output "bastion_security_group_id" {
+  value = aws_security_group.bastion_security_group.id
+}
+
+output "db_security_group_id" {
+  value = aws_security_group.db_security_group.id
+}
+
+output "elb_ingress_port" {
+  value = var.elb_ingress_port
+}
+
+output "app_ingress_port" {
+  value = var.app_ingress_port
 }
